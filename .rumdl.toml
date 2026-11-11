@@ -4,7 +4,8 @@
 
 [global]
 # MD041: First line should be a heading - disabled because SPDX license headers come first
-disable = ["MD041"]
+# MD013 (line length) and MD033 (inline HTML) are off as in `just lint-markdown`.
+disable = ["MD013", "MD033", "MD041"]
 
 # Exclude generated mdbook documentation
 exclude = ["hsm-worker/docs/book"]

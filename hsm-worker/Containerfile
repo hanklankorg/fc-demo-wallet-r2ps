@@ -47,7 +47,7 @@ COPY integration-load-tests ./integration-load-tests
 
 RUN cargo build --release -p hsm-worker
 
-# Lets reusable-ci's extract.binary export the built binaries.
+# Lets the release's extract.binary export the built binaries.
 FROM scratch AS export-binary
 COPY --from=builder /app/target/release/hsm-worker /hsm-worker
 COPY --from=builder /app/target/release/digg-hsm-keytool /digg-hsm-keytool

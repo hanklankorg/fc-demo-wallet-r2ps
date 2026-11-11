@@ -5,36 +5,54 @@
 # Artifacts Configuration for wallet-r2ps
 # Defines what to build and where to publish.
 #
-# Pattern B (compiled-native): the Containerfile is the build environment.
-# sbom-cargo.yml emits a manifest-derived SBOM only; the actual cargo build
-# happens inside each service's multi-stage Containerfile, which is also
-# where native deps live. See
-# https://github.com/diggsweden/reusable-ci/blob/main/docs/ecosystems.md
+# Pattern B (compiled-native): the Containerfile is the build environment
+# (build-mode: container-first). sbom-cargo.yml emits a manifest-derived SBOM
+# only; the actual cargo build happens inside each service's multi-stage
+# Containerfile, which is also where native deps live. See
+# https://github.com/diggsweden/forge-ci/blob/main/docs/ecosystems.md
 # for the full framing.
 #
 # Workspace-level cargo test (with testcontainers features) runs separately
 # via .github/workflows/test.yml from pullrequest-workflow.yml. Per-artefact
 # tests would re-run the full workspace twice and miss the required features.
 
+# The container images are signed keyless with Sigstore, and each carries
+# SBOM and SLSA provenance attestations. The release files keep their
+# OpenPGP .asc signatures, made with the key in RELEASE_GPG_PRIVATE_KEY.
+sign:
+  method: sigstore
+  files-method: gpg
+
+# The release commit and the final tag are signed with the GPG key in
+# RELEASE_GPG_PRIVATE_KEY, as before.
+git-signing:
+  method: gpg
+
 artifacts:
   - name: hsm-worker
     project-type: cargo
     working-directory: ./hsm-worker
+    config:
+      build-mode: container-first
   - name: wallet-bff
     project-type: cargo
     working-directory: ./wallet-bff
+    config:
+      build-mode: container-first
   - name: integration-load-tests
     project-type: cargo
     working-directory: ./integration-load-tests
+    config:
+      build-mode: container-first
 
 containers:
   - name: hsm-worker
     from: [hsm-worker]
+    image-name: diggsweden/wallet-r2ps/hsm-worker
     container-file: hsm-worker/Containerfile
     context: .
     target: runtime
     platforms: linux/amd64,linux/arm64
-    registry: ghcr.io
     extract:
       binary:
         target: export-binary
@@ -42,11 +60,11 @@ containers:
 
   - name: wallet-bff
     from: [wallet-bff]
+    image-name: diggsweden/wallet-r2ps/wallet-bff
     container-file: wallet-bff/Containerfile
     context: .
     target: runtime
     platforms: linux/amd64,linux/arm64
-    registry: ghcr.io
     extract:
       binary:
         target: export-binary
@@ -54,16 +72,12 @@ containers:
 
   - name: integration-load-tests
     from: [integration-load-tests]
+    image-name: diggsweden/wallet-r2ps/integration-load-tests
     container-file: integration-load-tests/Containerfile
     context: .
     target: runtime
     platforms: linux/amd64,linux/arm64
-    registry: ghcr.io
     extract:
       binary:
         target: export-binary
         names: [integration-load-tests]
-
-publishers:
-  - type: github-packages
-    artifacts: [hsm-worker, wallet-bff, integration-load-tests]

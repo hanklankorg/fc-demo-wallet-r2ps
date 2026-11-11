@@ -25,6 +25,19 @@ jobs:
       - name: Audit dependencies for vulnerabilities
         run: cargo binstall --no-confirm cargo-audit && cargo audit
 
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # rustup installs the toolchain and clippy that rust-toolchain.toml pins.
+      - name: Run clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
   test:
     name: Test
     runs-on: ubuntu-latest
