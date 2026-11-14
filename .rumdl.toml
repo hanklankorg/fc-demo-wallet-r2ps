@@ -8,4 +8,4 @@
 disable = ["MD013", "MD033", "MD041"]
 
 # Exclude generated mdbook documentation
-exclude = ["hsm-worker/docs/book"]
+exclude = ["hsm-worker/docs/book", "CHANGELOG.md"]
