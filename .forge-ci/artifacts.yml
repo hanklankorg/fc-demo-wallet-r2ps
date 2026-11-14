@@ -41,7 +41,7 @@ artifacts:
 containers:
   - name: hsm-worker
     from: [wallet-r2ps]
-    image-name: diggsweden/wallet-r2ps/hsm-worker
+    image-name: hanklankorg/fc-demo-wallet-r2ps/hsm-worker
     container-file: hsm-worker/Containerfile
     context: .
     target: runtime
@@ -53,7 +53,7 @@ containers:
 
   - name: wallet-bff
     from: [wallet-r2ps]
-    image-name: diggsweden/wallet-r2ps/wallet-bff
+    image-name: hanklankorg/fc-demo-wallet-r2ps/wallet-bff
     container-file: wallet-bff/Containerfile
     context: .
     target: runtime
@@ -65,7 +65,7 @@ containers:
 
   - name: integration-load-tests
     from: [wallet-r2ps]
-    image-name: diggsweden/wallet-r2ps/integration-load-tests
+    image-name: hanklankorg/fc-demo-wallet-r2ps/integration-load-tests
     container-file: integration-load-tests/Containerfile
     context: .
     target: runtime
