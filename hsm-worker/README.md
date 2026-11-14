@@ -142,7 +142,7 @@ Integration tests use [testcontainers](https://crates.io/crates/testcontainers) 
 
 ## Docs and openapi
 
-Generate [./docs/domain-model.html](./docs/book/book/introduction.html) and [./openapi.json](./openapi.json)
+Generate `./docs/book/book/introduction.html` and `./openapi.json`
 
 ```text
 make docs

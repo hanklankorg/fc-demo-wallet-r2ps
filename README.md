@@ -6,7 +6,7 @@ SPDX-License-Identifier: EUPL-1.2
 
 # wallet-r2ps
 
-[![License: EUPL 1.2](https://img.shields.io/badge/License-European%20Union%20Public%20Licence%201.2-library?style=for-the-badge&&color=lightblue)](LICENSE)
+[![License: EUPL 1.2](https://img.shields.io/badge/License-European%20Union%20Public%20Licence%201.2-library?style=for-the-badge&&color=lightblue)](LICENSES/EUPL-1.2.txt)
 [![REUSE](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.reuse.software%2Fstatus%2Fgithub.com%2Fdiggsweden%2Fwallet-r2ps&query=status&style=for-the-badge&label=REUSE)](https://api.reuse.software/info/github.com/diggsweden/wallet-r2ps)
 
 [![Tag](https://img.shields.io/github/v/tag/diggsweden/wallet-r2ps?style=for-the-badge&color=green)](https://github.com/diggsweden/wallet-r2ps/tags)
@@ -30,16 +30,16 @@ The project relies on environment variables stored in `.env` files.
    * `.env.softhsm`: Configuration for SoftHSM tokens.
    * `.env.opaque`: Opaque configuration secrets.
 
-    *(Ensure these files are in the root directory and contain valid keys.)*
+   Ensure these files are in the root directory and contain valid keys.
 
 2. **Kafka:**
-    The worker connects to a local Kafka cluster.
+   The worker connects to a local Kafka cluster.
    * **Bootstrap Servers:** `kafka-1:19092,kafka-2:19092,kafka-3:19092`
 
 3. **Platform specific configuration:**
    * Create an .env file with custom config.
-        Examples can be found in the repo
-        [.env_linux](.env_linux) and [.env_mac](.env_mac)
+     Examples can be found in the repo
+     [.env_linux](.env_linux) and [.env_mac](.env_mac)
 
 ## Usage
 
