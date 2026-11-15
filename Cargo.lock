@@ -1509,7 +1509,7 @@ dependencies = [
 
 [[package]]
 name = "hsm-common"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "base64 0.23.1",
  "hex",
@@ -1524,7 +1524,7 @@ dependencies = [
 
 [[package]]
 name = "hsm-worker"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "base64 0.23.1",
  "chrono",
@@ -1892,7 +1892,7 @@ dependencies = [
 
 [[package]]
 name = "integration-load-tests"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "base64 0.23.1",
@@ -4550,7 +4550,7 @@ dependencies = [
 
 [[package]]
 name = "wallet-bff"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "arc-swap",
  "async-trait",

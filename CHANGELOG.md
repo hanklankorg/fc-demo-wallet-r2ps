@@ -1,0 +1,368 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.2.0] - 2026-11-15
+
+### Added
+
+- Add CODEOWNERS
+- Add state_jws passthrough and switch signatures to P1363
+- Add minimal fix for broken docs generation
+- Add k3s targets for local development
+- Add initial hsm key in worker on init-state
+- Add ADR for request-response routing, startup/shutdown improvements
+- Add replay protection
+- Add file to safe.directory
+- Address PR feedback
+- Add hsm-verify container, fix license/gitignore, bump cargo-audit
+- Add hsm-common shared crate (protocol + jose), rename WorkerResponse
+- Add github actions and just linting rust projects
+- Add licence headers and files
+- Add the ability to derive OPAQUE and JWS keys from a HSM protected root key
+- Add digg-hsm-keytool CLI binary
+- Add integration load tests for bff and worker
+- Add unit-tests
+- Add and refactor worker_service tests
+- Add unit-tests
+- Add unit-tests for state
+- Add tests for in-memory session state.
+- Add error reporting on kafka
+- Add curl-static to rdkafka
+- Add distinct type for HsmWrappedKey
+- Add configuration for serialized opaque server setup
+- Add TODO for making service_request.context obsolete
+- Add helper to debug-log JSON or hex data
+- Add info logging for server start and significant request/response events
+- Add define_byte_vector! for distinct types of Vec<u8>
+- Add state in valkey support in rest api
+- Add delete hsm delete key
+
+### Changed
+
+- Use the lab's Forge CI layer
+- Name the snapshot and release flows as the other projects do
+- Name the snapshot flow release-snapshot-workflow.yml
+- Name the secondary workflow files as the other projects do
+- Leave the generated changelog out of the Markdown lint
+- Report SAST findings without failing the pull request
+- Declare the Cargo workspace as one artifact
+- Migrate workflows to forge-ci
+- Merge pull request #157 from diggsweden/renovate/pem-4.x
+- Update rust crate pem to v4
+- Merge pull request #161 from diggsweden/updateCI
+- Update reusableCI
+- Merge pull request #156 from diggsweden/renovate/github-actions
+- Update cargo-bins/cargo-binstall action to v1.25.1
+- Merge pull request #160 from diggsweden/rustNonMajor
+- Update rust non-major
+- Update rust non-major
+- Merge pull request #154 from diggsweden/renovate/dtolnay-rust-toolchain-digest
+- Update dtolnay/rust-toolchain digest to 6bed076
+- Merge pull request #158 from diggsweden/valkeyRetry
+- Merge pull request #149 from diggsweden/renovate/rust-non-major
+- Update rust non-major
+- Merge pull request #152 from diggsweden/chore/drop-unused-deps
+- Merge pull request #148 from diggsweden/renovate/rust-1.x
+- Update rust docker tag to v1.98
+- Merge pull request #150 from diggsweden/renovate/actions-cache-6.x
+- Update actions/cache action to v6
+- Merge pull request #151 from diggsweden/renovate/actions-checkout-7.x
+- Update actions/checkout action to v7
+- Merge pull request #147 from diggsweden/feat/problem-detail-2
+- Unify tests
+- Return 503 ProblemDetail when Valkey is unreachable
+- Merge pull request #128 from diggsweden/keySeparation
+- Two-key PEM config via SERVER_JWS_PRIVATE_KEY + SERVER_JWE_PRIVATE_KEY
+- Simplify key-separation follow-ups
+- Backward compat for single-key clients and config
+- Drop redundant server_jws_kid and server_jwe_kid response fields
+- Split client public key into separate JWS and JWE keys
+- Require distinct keys for JWS signing and JWE decryption
+- Merge pull request #146 from diggsweden/fixServiceNames
+- Merge pull request #143 from diggsweden/renovate/github-actions
+- Update github actions
+- Merge pull request #142 from diggsweden/renovate/dtolnay-rust-toolchain-digest
+- Update dtolnay/rust-toolchain digest to 4360b52
+- Merge pull request #145 from diggsweden/pinDeps
+- Pin dependency for opaque_ke
+- Merge pull request #144 from diggsweden/feat/more-valkey-connection-fixes
+- Widen valkey retry budget for mesh reconnects
+- Merge pull request #141 from diggsweden/bumpOpentelemetry
+- Update opentelemetry to 0.32
+- Merge pull request #134 from diggsweden/renovate/rust-1.96-bookworm
+- Update rust:1.96-bookworm docker digest to a339861
+- Merge pull request #133 from diggsweden/renovate/debian-bookworm-slim
+- Update debian:bookworm-slim docker digest to abd67ff
+- Merge pull request #137 from diggsweden/feat/valkey-sentinel-and-stale-connection-fix
+- Re-resolve valkey master via sentinel on failover
+- Sentinel-resolved valkey + istio idle-kill resilience
+- Merge pull request #136 from diggsweden/feat/otlp-export
+- Export traces and metrics from hsm-worker and wallet-bff
+- Merge pull request #129 from diggsweden/removeLegacyEndpoint
+- Refactor tests
+- Update github actions to v1.20.0 (#131)
+- Update rust non-major to v1.2.3 (#130)
+- Merge pull request #125 from diggsweden/renovate/debian-bookworm-slim
+- Update debian:bookworm-slim docker digest to 96e378d
+- Merge pull request #126 from diggsweden/renovate/rust-1.96-bookworm
+- Update rust:1.96-bookworm docker digest to 19817ea
+- Merge pull request #124 from diggsweden/renovate/rust-non-major
+- Update rust non-major to v1.23.3
+- Update github actions to v6.0.3 (#127)
+- Merge pull request #123 from diggsweden/codeowners
+- Merge pull request #109 from diggsweden/renovate/rust-non-major
+- Update minor and exclude rand_core from renovate
+- Update rust non-major
+- Merge pull request #116 from diggsweden/renovate/lock-file-maintenance
+- Lock file maintenance
+- Merge pull request #121 from diggsweden/feat/state-jws-passthrough
+- Signature validation
+- Update rust docker tag to v1.96 (#122)
+- Merge pull request #118 from diggsweden/errorCleanup
+- Error responses and openApi
+- Merge pull request #117 from diggsweden/updateDocs
+- Merge pull request #106 from diggsweden/renovate/debian-bookworm-slim
+- Update debian:bookworm-slim docker digest to 0104b33
+- Merge pull request #107 from diggsweden/renovate/rust-1.95-bookworm
+- Update rust:1.95-bookworm docker digest to 6258907
+- Merge pull request #114 from diggsweden/feat/minimal-broken-docs-fix
+- Update github actions (#115)
+- Merge pull request #113 from diggsweden/removeContext
+- Merge pull request #103 from diggsweden/renovate/lock-file-maintenance
+- Lock file maintenance
+- Merge pull request #112 from diggsweden/fixLicense
+- Merge pull request #110 from diggsweden/feat/pod-name-in-topic-name
+- Include pod name in topic name for per topic bff
+- Merge pull request #111 from diggsweden/feat/ft-k3s-deploy
+- Generate softhsm key if not already present
+- Update cargo-bins/cargo-binstall action to v1.19.0 (#108)
+- Merge pull request #104 from diggsweden/feat/reusable-ci-2.8.1
+- Use reusable-ci rust chain
+- Merge pull request #101 from diggsweden/renovate/redis-1.x
+- Update rust crate redis to v1
+- Merge pull request #102 from diggsweden/renovate/lock-file-maintenance
+- Lock file maintenance
+- Merge pull request #99 from diggsweden/renovate/github-actions
+- Update diggsweden/reusable-ci action to v2.8.0
+- Merge pull request #100 from diggsweden/renovate/rust-1.x
+- Update rust docker tag to v1.95
+- Merge pull request #85 from diggsweden/renovate/pin-dependencies
+- Pin dependencies
+- Merge pull request #84 from diggsweden/feat/create-wallet-hsm-key-on-state-init
+- Merge pull request #96 from diggsweden/dependencies
+- Update rand
+- Update der
+- Update cryptoki
+- Update rust non-major
+- Merge pull request #98 from diggsweden/gommit
+- Merge pull request #88 from diggsweden/ft-per-instance-kafka-response-topics
+- Env-driven init-kafka script, rename r2ps topics
+- Decouple topic lifecycle, remove BFF admin rights
+- Topic lifecycle improvements
+- Per-instance Kafka response topics
+- Merge pull request #94 from diggsweden/renovate/actions-cache-5.x
+- Update actions/cache action to v5
+- Merge pull request #95 from diggsweden/renovate/actions-checkout-6.x
+- Update actions/checkout action to v6
+- Update rust docker tag to v1.94 (#92)
+- Merge pull request #86 from diggsweden/renovate/github-actions
+- Update github actions
+- Merge pull request #91 from diggsweden/pipeline
+- TestContainer in pipeline
+- Adjust for workspace
+- Bump commit linter
+- Merge pull request #89 from diggsweden/fixMdLintError
+- Merge pull request #83 from diggsweden/replay
+- Move nonce to outerRequest
+- Merge pull request #80 from diggsweden/ft-refactor_common
+- Merge pull request #82 from diggsweden/dockerFileFix
+- Integrate hsm-common types and clean up domain
+- Merge pull request #81 from diggsweden/chore/bump-reusable-ci-v2.7.9
+- Switch rumdl from ubi to aqua, bump gommitlint to 0.9.10
+- Bump reusable-ci to v2.7.9
+- Merge pull request #73 from diggsweden/feat/just-lint
+- Merge pull request #71 from diggsweden/tests
+- Update makefiles and add unit tests
+- Merge pull request #72 from diggsweden/feat/reuse
+- Merge pull request #70 from diggsweden/ft-rename_r2ps_worker
+- Rename rust-r2ps-worker to hsm-worker
+- Merge pull request #69 from diggsweden/testContainer
+- Test-container tests
+- Merge pull request #67 from diggsweden/semiIntegrationTests
+- Self contained integration tests
+- Merge pull request #66 from diggsweden/ft-first_key_derivation
+- Merge pull request #65 from diggsweden/refactorTests
+- Move and refactor tests
+- Introduce mockall
+- Merge pull request #59 from diggsweden/feat/max-one-hsm-sign-per-auth-session
+- Block multiple hsm operations in a session
+- Merge pull request #64 from diggsweden/feat/e2e-load-tests
+- Merge pull request #63 from diggsweden/moreUnitTests
+- Merge pull request #62 from diggsweden/workerServiceTests
+- Merge pull request #61 from diggsweden/unitTest
+- Merge pull request #60 from diggsweden/rustRest
+- Introduce wallet-bff
+- Merge pull request #56 from diggsweden/stateTests
+- Merge pull request #58 from diggsweden/ft-missing_tests
+- Update reusable-ci to v2.7.3
+- Merge pull request #53 from diggsweden/tests
+- Unit tests
+- Merge pull request #54 from diggsweden/ft-in_memory_cache
+- Unify session state into single FSM cache
+- Merge pull request #52 from diggsweden/removeCrates
+- Merge pull request #51 from diggsweden/changePin
+- ChangePin
+- Merge pull request #47 from diggsweden/errorHandling
+- Merge pull request #49 from diggsweden/ft-errorHandling2
+- Restructure error handling with typed visibility enum
+- Merge pull request #48 from diggsweden/ft-jose_port_adapter
+- Refactor use of josekit behind a port/adapter
+- Merge pull request #46 from diggsweden/ft-opaque_port_adapter
+- Reformat with cargo fmt
+- Refactor use of opaque_ke behind a port/adapter
+- Merge pull request #45 from diggsweden/decryptionEnum
+- Refactor decryption
+- Merge pull request #44 from diggsweden/betterState
+- Only send changed state
+- Merge pull request #43 from diggsweden/feat/generate-docs-pr
+- Typed jws and jwe and generate docs from code
+- Merge pull request #42 from diggsweden/ft-dynamic_registration
+- Facilitate dynamic registration of clients
+- Merge pull request #40 from diggsweden/execute
+- Create bootstrap
+- Refactor worker_service
+- Break up worker_service execute
+- Merge pull request #39 from diggsweden/ft-initial_state_from_worker
+- Move state JWS encode/decode to DeviceHsmState
+- Have Java REST API request new state from Rust hsm-worker
+- Merge pull request #38 from diggsweden/clippy
+- Merge pull request #37 from diggsweden/fixEnv
+- Merge pull request #36 from diggsweden/ft-improved_state
+- Make OPAQUE context configurable, and fix things in .env*
+- Re-organise DeviceHsmState
+- Merge pull request #35 from diggsweden/feat/feat/config-ddd-port-adapter-arch
+- Refactor config of app in DDD port-adapter architecture
+- Merge pull request #34 from diggsweden/ft-jose_soup
+- Sign initial state with hsm-workers development key instead of a random one
+- Extract actual public key from X.509 certificate
+- Update JWS signing/verifying to use josekit
+- Use josekit for JWE encryption without PEM
+- Clean up requests
+- Merge pull request #32 from diggsweden/ft-rework_protocol
+- Re-work protocol with cleaner layering, better names, better data types.
+- Merge pull request #29 from diggsweden/fix/volume-permission-linux-and-docs
+- Merge pull request #28 from diggsweden/ft-inner_outer
+- Further remain intermediate R2psRequest to clarify purpose
+- Rename ServiceRequest to OuterRequest and various different names to Inner(something)
+- Merge pull request #27 from diggsweden/feat/survive-restart-and-rebuild
+- Merge pull request #26 from diggsweden/ft-refactor_opaque_requests
+- Refactor authenticate and register from 2+2 operations to 4
+- Merge pull request #25 from diggsweden/ft-logging
+- Change all existing logging to use debug instead of info
+- Merge pull request #24 from diggsweden/lessB64
+- Merge pull request #23 from diggsweden/time
+- Expiry times is ISO duration
+- Merge pull request #20 from diggsweden/ft-refactor_operations
+- Merge branch 'main' into ft-refactor_operations
+- Clean up struct R2psService and it's init
+- Refactor operations out of r2ps_service.rs into a submodule
+- Merge pull request #18 from diggsweden/feat/remove-java-worker-improve-docs
+- Merge pull request #21 from diggsweden/feat/use-4-0-1-opaque-ke
+- Use official version of opaque-ke instead of github version
+- Merge pull request #19 from diggsweden/hsmKeyJwk
+- Return public hsm key as JWK
+- Merge pull request #17 from diggsweden/feat/state-in-req-resp
+- Correct config for kafka-3 in docker
+- Correct config for rust worker in docker
+- Merge pull request #16 from diggsweden/ft-byte_vectors
+- Only fetch session key once for decrypt and then encrypt
+- Use distinct byte vector type for DecryptedData
+- Use distinct byte vector type for SessionKey
+- Format with rustfmt
+- Merge pull request #15 from diggsweden/ft-restore_execute_logic
+- Move decryption of service_data back up one level in the call-stack
+- Move state to topic work in progress
+- Merge pull request #12 from diggsweden/lint
+- Linting with clippy
+- Merge pull request #11 from diggsweden/deleteKey
+- Merge pull request #9 from diggsweden/ft-enc_handling
+- Merge branch 'main' into ft-enc_handling
+- R2ps_service (#8)
+- Ignore some unused results
+- Set "enc" correctly in service responses
+- Minor additions
+- Merge pull request #6 from diggsweden/refactorRust
+- Setup
+- Merge pull request #5 from diggsweden/first
+- Initial commit
+- Initial commit
+
+### Fixed
+
+- Publish the trial images under the test organisation
+- Fix the README lines the Markdown lint flags
+- Correct and simplify retries for valkey
+- One key mode
+- Code-review findings from key-separation PR
+- Honour OTEL_SERVICE_NAME env var override
+- Update stale docs
+- Reuse-ignore for script
+- Downgrade and add exclusions for versions
+- Rename conf
+- Generate unique nonce per pake request
+- Housekeeping
+- Update integration tests for per-instance response topics
+- Markdown linter error
+- Review fixes of adr
+- Update container builds for workspace structure with hsm-common
+- Correct worker_flow_test
+- Refactor bootstrap, add keytool to container
+- Restore removed types
+- Default to one sign per session
+- Move creating clients out of main loop
+- Clippy warnings
+- Throwing exceptions cause Kafka to retry - return silently instead
+- Rename
+- Refactor r2ps_service construction
+- Correct serverid in docker conf
+- Keep jws signer and verifier in memory and clean up config
+- Correct config for local dev with softhsm tokens
+- Correct server public key config
+- Fix padding (and improve debug) and linux server_public_key
+- Fix test case with valid data
+- Avoid converting JWK to PEM when verifying JWS
+- Naming
+- Volume file permission on linux and add docs
+- Pretty-print ServiceRequest to avoid wall-of-text
+- Better naming
+- Correct signing (#10)
+- Correct failing tests after merges
+- Start rust worker after init kafka completed
+
+### Removed
+
+- Remove unused dependencies
+- Remove mise paranoid flag
+- Remove legacy operations endpoint
+- Remove context
+- Remove request_counter
+- Remove false Option
+- Remove unused crates
+- Remove debug info log
+- Remove unused import
+- Remove now unused jsonwebtoken
+- Remove unneeded variables
+- Remove unused code/variables
+- Remove redundantly stored curve (also in public_key_jwk)
+- Remove unused variable for pkcs11 tools
+- Remove spurious printlns
+- Remove double b64
+- Remove old code and improve readme
+- Remove never-changed data from R2psResponse
+
+
+<!-- generated by git-cliff -->

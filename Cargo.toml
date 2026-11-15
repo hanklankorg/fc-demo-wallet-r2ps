@@ -13,4 +13,4 @@ resolver = "3"
 
 # One version for the whole workspace: a release sets it here once.
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
